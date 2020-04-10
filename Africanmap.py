@@ -37,7 +37,7 @@ nmonths = len(ds.n_months)
 #--------------------------
 
 instrument = 'OCO2_LN'
-iyear = 2015
+iyear = 2016
 
 years = []
 for ii in np.arange(nmonths): years.append(np.squeeze(date.data[ii][0]))
@@ -161,11 +161,15 @@ for j in range(len(not_african_countries)):
 fig = plt.figure(figsize=[5,10])
 
 plt.barh(df_sorted.country, df_sorted.co2)
+
+for ii in np.arange(len(df_sorted.co2)):
+    plt.plot([-0.2,0],[ii,ii],'--',color='red',alpha=0.1)
+
 #plt.title('Number of countries: ' + str(len(df_sorted)))
 plt.title('African carbon budgets: '+str(iyear))
 plt.xlabel('CO$_2$ flux (PgC/yr)')
 plt.xticks(rotation=90)
-plt.xlim([-0.2,0.3])
+plt.xlim([-0.2,0.35])
 
 CountryTotal = np.sum(df_sorted.co2)
 OutString =  'Continental total: '+'{:4.2f}'.format(CountryTotal)+' PgC/yr'
