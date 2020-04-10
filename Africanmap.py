@@ -37,7 +37,7 @@ nmonths = len(ds.n_months)
 #--------------------------
 
 instrument = 'OCO2_LN'
-iyear = 2016
+iyear = 2015
 
 years = []
 for ii in np.arange(nmonths): years.append(np.squeeze(date.data[ii][0]))
@@ -165,9 +165,17 @@ plt.barh(df_sorted.country, df_sorted.co2)
 plt.title('African carbon budgets: '+str(iyear))
 plt.xlabel('CO$_2$ flux (PgC/yr)')
 plt.xticks(rotation=90)
+plt.xlim([-0.2,0.3])
+
+CountryTotal = np.sum(df_sorted.co2)
+OutString =  'Continental total: '+'{:4.2f}'.format(CountryTotal)+' PgC/yr'
+
+
+
+plt.annotate(OutString, [0.0,51],ha='center')
 
 fig.tight_layout()
 
 plt.savefig('Palmer2019AfricanCO2budget_'+instrument+'_'+str(iyear)+'.png')
 
-#plt.show()
+plt.show()
